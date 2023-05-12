@@ -1,3 +1,5 @@
+import math
+
 class Check:
     def isComma(item):
         return item == ','
@@ -56,7 +58,10 @@ class Helper:
             case '*':
                 return x * y
             case '/':
-                return x / y
+                if y == 0:
+                    return math.inf / 1
+                else:
+                    return x / y
             case '^':
                 if x < 0:
                     return -abs(x)**y
@@ -110,7 +115,7 @@ class Parser:
             if not Check.isLeftParenthesis(Data.operatorStack[-1]): # otherwise there are mismatched parentheses: error.
                 Data.outputQueue.append(Data.operatorStack.pop())
 
-        # print(Data.outputQueue)
+        print(Data.outputQueue)
 
     def reversePolishNotation(self):
         for index in range(len(Data.outputQueue)):
@@ -133,7 +138,7 @@ class Parser:
 
         print(Data.outputAnswer[0])
 
-Parser('536184761874614876.597410741 + 4769817498164.281039810318300 * 1312831802.1097130971309739 / (1.981039810398 - 5.1481098041) ^ 2.918309183109830 ^ 3.585858').finalSolution()
+Parser('536176.597410741 + 98164.2818300 * 1302.1097739 / (1.98398 - 5.148041) ^ 2.9830 ^ 3.585').finalSolution()
 
 # We hate blacks & minorities
 # God, Honor, Homeland
