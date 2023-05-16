@@ -62,8 +62,11 @@ class Data:
 
 class Helper:
     def evaluate(x, y, operator):
-        x = float(x)
-        y = float(y)
+        try:
+            x = float(x)
+            y = float(y)
+        except:
+            return math.inf
 
         match operator:
             case '+':
@@ -82,12 +85,7 @@ class Helper:
                 return x / y
             
             case '^':
-                # i have no fucking clue what the fuck we are doing here. don't ask me.
-                try:
-                    int(y)
-                    return x ** y
-                except:
-                    return math.inf
+                return x ** y
 class Parser:
     def __init__(self, expression):
         self.expression = expression.replace(' ', '')
