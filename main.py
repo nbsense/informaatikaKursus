@@ -1,3 +1,28 @@
+# TODO: CREATE FILE STRUCUTRE (SKELETON) FOR POWERPOINT PRESENTATION (EASIER TO EXPLAIN)
+
+'''
+math_parser/
+    ├── parser/
+    │   ├── __init__.py
+    │   ├── lexer.py
+    │   ├── parser.py
+    │   └── utils.py
+    ├── evaluator/
+    │   ├── __init__.py
+    │   ├── evaluator.py
+    │   └── utils.py
+    ├── main.py
+'''
+
+'''
+lexer being tokenizer (to be created / currently built into postfix generator. ghetto)
+parser being parser class added below
+utils being functions added below
+evaluator being our postfix notation evaluator
+utils being functions added below
+main.py staying the same
+'''
+
 import math
 
 class Check:
@@ -50,17 +75,70 @@ class Check:
         final = token == ')'
 
         return final
+# CLASS_END
+
+class Compute:
+    def addition(a, b):
+        a = float(a)
+        b = float(b)
+        
+        final = a + b 
+
+        return final
+    
+    def subtraction(a, b):
+        a = float(a)
+        b = float(b)
+        
+        final = a - b 
+
+        return final
+    
+    def multiplication(a, b):
+        a = float(a)
+        b = float(b)
+        
+        final = a * b 
+
+        return final
+    
+    def division(a, b):
+        a = float(a)
+        b = float(b)
+        
+        if b == 0:
+            final = math.inf
+        else:
+            final = a / b 
+
+        return final
+    
+    def power(a, b):
+        a = float(a)
+        b = float(b)
+    
+        final = (a) ** (b)
+
+        return final
+    
+    # TODO: FIGURE OUT TRIGONOMETRICAL FUNCTIONS (NORAML AND HYPERBOLIC).
+# CLASS_END
 
 class Data:
     associative = {'+': 'Left', '-': 'Left', '*': 'Left', '/': 'Left', '^': 'Right', ' ': 'Left'}
-    functions = {}
+    functions = {'ln', 'log', 'log10', 'max', 'min', 'exp', 'sqrt', 'sin', 'cos', 'tan', 'cot', 'acos', 'asin', 'atan'}
     operators = {'+': 1, '-': 1, '*': 2, '/': 2, '^': 3, ' ': 4}
 
     operatorStack = []
     outputAnswer = []
     outputQueue = []
+# CLASS_END
 
 class Helper:
+    # TODO: TAKE THE DERIVATIVE FROM GIVEN INPUT. MAYBE MOVE TO COMPUTE CLASS
+    def derivative():
+        pass
+
     def evaluate(x, y, operator):
         try:
             x = float(x)
@@ -70,22 +148,48 @@ class Helper:
 
         match operator:
             case '+':
-                return x + y
+                Compute.addition(x, y)
             
             case '-':
-                return x - y
+                Compute.subtraction(x, y)
             
             case '*':
-                return x * y
+                Compute.multiplication(x, y)
             
             case '/':
-                if y == 0:
-                    return math.inf
-                
-                return x / y
+                Compute.division(x, y)
             
             case '^':
-                return x ** y
+                Compute.power(x, y)
+
+            case 'sin':
+                pass
+
+            case 'cos':
+                pass
+
+            case 'tan':
+                pass
+
+            case 'sinh':
+                pass
+
+            case 'cosh':
+                pass
+
+            case 'tanh':
+                pass
+
+            case 'asin':
+                pass
+
+            case 'acos':
+                pass
+
+            case 'atan':
+                pass
+# CLASS_END
+
 class Parser:
     def __init__(self, expression):
         self.expression = expression.replace(' ', '')
@@ -199,6 +303,7 @@ class Parser:
     def finalSolution(self):
         self.generatePostfixNotation()
         self.evaluatePostfixNotation()
+# CLASS_END
 
 Parser('3 + 4 * 2 / (1 - 5) ^ 2 * 3').finalSolution()
 
